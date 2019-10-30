@@ -14,7 +14,6 @@ def login(client, username, password):
         password=password
     ), follow_redirects=True)
 
-#UNIT TESTS BELOW HERE
 def test_registration(apptest):
     res = apptest.get("/register")
     # print(dir(res), res.status_code)
