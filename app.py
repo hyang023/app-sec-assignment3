@@ -78,7 +78,7 @@ def create_app(config=None):
                 message2 = "Misspelled words: "
         return render_template('spellcheck.html', message=message, message2=message2, value=value)
     
-    @app.route('/history<int:query_id>')
+    @app.route('/history/query<int:query_id>')
     def history(query_id):
         return 'History for query# here'
     
