@@ -8,23 +8,24 @@ def apptest():
     apptest.debug = True
     return apptest.test_client()
 
-def test_hello_world(apptest):
-    res = apptest.get("/")
-    # print(dir(res), res.status_code)
-    assert res.status_code == 200
-    assert b"Hello, World!" in res.data
-
 def login(client, username, password):
     return client.post('/login', data=dict(
         username=username,
         password=password
     ), follow_redirects=True)
 
+#UNIT TESTS BELOW HERE
 def test_registration(apptest):
     res = apptest.get("/register")
     # print(dir(res), res.status_code)
     assert res.status_code == 200
     assert b"Registration" in res.data
+    
+def test_hello_world(apptest):
+    res = apptest.get("/")
+    # print(dir(res), res.status_code)
+    assert res.status_code == 200
+    assert b"Hello, World!" in res.data
     
 def test_registration_no2fa(apptest):
     response = apptest.post('/register',
