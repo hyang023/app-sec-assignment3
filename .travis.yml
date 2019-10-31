@@ -1,0 +1,23 @@
+dist: bionic
+
+language: python
+python:
+  - "3.6"
+  
+branchs:
+only:
+    - master
+    
+before install:
+  - export FLASK_APP=app.py
+
+install:
+  - pip install flask
+  - pip install tox
+  - pip install tox-travis
+script:
+  - |
+    travis_wait 60 python -m flask &
+    SERVER_PID=$!
+  - echo $SERVER_PID
+  - tox
