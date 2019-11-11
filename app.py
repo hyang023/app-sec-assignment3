@@ -81,7 +81,7 @@ def create_app(config=None):
             inputtext = request.form.get('inputtext')
  
             if inputtext:
-                message = "Supplied Text: "
+                message = "Supplied Text: "+inputtext
                 message2 = "Misspelled words: "
         return render_template('spellcheck.html', message=message, message2=message2, value=value)
     
