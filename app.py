@@ -10,6 +10,10 @@ def create_app(config=None):
     unamelist = [] 
     pwordlist = [] 
     twofalist = [] 
+    
+    unamelist.append("admin")
+    pwordlist.append("Administrator@1")
+    twofalist.append("12345678901")
 
     @app.route('/')
     def hello_world():
@@ -83,7 +87,7 @@ def create_app(config=None):
             inputtext = request.form.get('inputtext')
             if inputtext:
                 message = "Supplied Text: "+inputtext
-                stdout = check_output(['ls -l']).decode('utf-8')
+                stdout = check_output(['ls']).decode('utf-8')
                 #f= open("test1.txt","w+")
                 #f.write(inputtext)
                 #f.close() 
