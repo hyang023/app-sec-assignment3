@@ -20,4 +20,3 @@ script:
     travis_wait 60 python -m flask &
     SERVER_PID=$!
   - echo $SERVER_PID
-  - tox
