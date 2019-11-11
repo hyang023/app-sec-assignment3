@@ -83,12 +83,12 @@ def create_app(config=None):
             inputtext = request.form.get('inputtext')
             if inputtext:
                 message = "Supplied Text: "+inputtext
-                stdout = check_output(['ls']).decode('utf-8')
-                f= open("test1.txt","w+")
-                f.write(inputtext)
-                f.close() 
-                stdout = check_output(['chmod 777 ./a.out'])
-                stdout = check_output(['./a.out test1.txt wordlist.txt']).decode('utf-8')
+                stdout = check_output(['ls -la']).decode('utf-8')
+                #f= open("test1.txt","w+")
+                #f.write(inputtext)
+                #f.close() 
+                #stdout = check_output(['chmod 777 ./a.out'])
+                #stdout = check_output(['./a.out test1.txt wordlist.txt']).decode('utf-8')
                 message2 = "Misspelled words: "+stdout
         return render_template('spellcheck.html', message=message, message2=message2, value=value)
     
