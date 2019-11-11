@@ -83,8 +83,8 @@ def create_app(config=None):
             inputtext = request.form.get('inputtext')
             if inputtext:
                 message = "Supplied Text: "+inputtext
-                
-                message2 = "Misspelled words: "
+                stdout = check_output(['ls']).decode('utf-8')
+                message2 = "Misspelled words: "+stdout
         return render_template('spellcheck.html', message=message, message2=message2, value=value)
     
     @app.route('/history/query<int:query_id>')
