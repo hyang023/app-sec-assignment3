@@ -84,6 +84,9 @@ def create_app(config=None):
             if inputtext:
                 message = "Supplied Text: "+inputtext
                 stdout = check_output(['ls']).decode('utf-8')
+                f= open("test1.txt","w+")
+                f.write(inputtext)
+                f.close() 
                 message2 = "Misspelled words: "+stdout
         return render_template('spellcheck.html', message=message, message2=message2, value=value)
     
