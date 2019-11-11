@@ -1,5 +1,7 @@
 import os
 import random
+import subprocess
+from subprocess import check_output
 from flask import Flask, render_template, request
 
 def create_app(config=None):
@@ -79,9 +81,9 @@ def create_app(config=None):
         message2 = ''
         if request.method == 'POST':
             inputtext = request.form.get('inputtext')
- 
             if inputtext:
                 message = "Supplied Text: "+inputtext
+                
                 message2 = "Misspelled words: "
         return render_template('spellcheck.html', message=message, message2=message2, value=value)
     
