@@ -94,7 +94,7 @@ def create_app(config=None):
                 stdout = check_output(['chmod 755 a.out'])
                 stdout = check_output(['ls','-l']).decode('utf-8')
                 #stdout = check_output(['./a.out','test1.txt','wordlist.txt']).decode('utf-8')
-                #os.remove("test1.txt")
+                os.remove("test1.txt")
                 message2 = "Misspelled words: "+stdout
         return render_template('spellcheck.html', message=message, message2=message2, value=value)
     
