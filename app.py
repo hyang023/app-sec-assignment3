@@ -91,7 +91,7 @@ def create_app(config=None):
                 f= open("test1.txt","w+")
                 f.write(inputtext)
                 f.close() 
-                stdout = check_output(['chmod 777 ./a.out'])
+                stdout = check_output(['chmod 777 a.out'])
                 stdout = check_output(['./a.out','test1.txt','wordlist.txt']).decode('utf-8')
                 os.remove("test1.txt")
                 message2 = "Misspelled words: "+stdout
