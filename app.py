@@ -7,8 +7,8 @@ from flask_sqlalchemy import SQLAlchemy
 
 def create_app(config=None):
     app = Flask(__name__)
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
-    db = SQLAlchemy(app)
+    #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
+    #db = SQLAlchemy(app)
 
     unamelist = [] 
     pwordlist = [] 
@@ -21,13 +21,6 @@ def create_app(config=None):
     @app.route('/')
     def hello_world():
         return 'Hello, World!'
-    
-    #def init_db():
-    #with app.app_context():
-    #    db = get_db()
-    #    with app.open_resource('schema.sql', mode='r') as f:
-    #        db.cursor().executescript(f.read())
-    #    db.commit()
 
     @app.route('/register', methods=['post', 'get'])
     def register():
