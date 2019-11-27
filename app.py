@@ -103,7 +103,7 @@ def create_app(config=None):
     
     @app.route('/history/query<int:query_id>')
     def history(query_id):
-        message = "History for query#"+query_id+" here"
+        message = "History for query#"+str(query_id)+" here"
         return render_template('queryhistory.html', message=message)
     
     @app.route('/login_history')
