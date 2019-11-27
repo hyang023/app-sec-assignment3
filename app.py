@@ -5,10 +5,11 @@ from subprocess import check_output
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 
+db = SQLAlchemy()
+
 def create_app(config=None):
     app = Flask(__name__)
-    #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
-    #db = SQLAlchemy(app)
+    db.init_app(app)
 
     unamelist = [] 
     pwordlist = [] 
