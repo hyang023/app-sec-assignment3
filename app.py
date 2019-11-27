@@ -98,7 +98,7 @@ def create_app(config=None):
     def history(query_id):
         message1 = "you have made [number] queries"
         message2 = "All of your queries are listed here"
-        return render_template('queryhistory.html', message1=message1, message2=message2)
+        return render_template('history.html', message1=message1, message2=message2)
     
     @app.route('/history/query<int:query_id>')
     def query_history(query_id):
