@@ -7,6 +7,8 @@ from flask_sqlalchemy import SQLAlchemy
 
 def create_app(config=None):
     app = Flask(__name__)
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
+    db = SQLAlchemy(app)
 
     unamelist = [] 
     pwordlist = [] 
