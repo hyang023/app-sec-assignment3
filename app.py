@@ -103,11 +103,13 @@ def create_app(config=None):
     
     @app.route('/history/query<int:query_id>')
     def history(query_id):
-        return 'History for query# here'
+        message = "History for query#"+query_id+" here"
+        return render_template('queryhistory.html', message=message)
     
     @app.route('/login_history')
     def login_history():
-        return 'Admins can view login history page here'
+        message = "Admins can view login history page here"
+        return render_template('loginhistory.html', message=message)
 
     return app
 
