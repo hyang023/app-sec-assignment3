@@ -9,7 +9,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 def create_app(config=None):
     app = Flask(__name__)
-    db.init_app(app)
+    #db.init_app(app)
 
     unamelist = [] 
     pwordlist = [] 
