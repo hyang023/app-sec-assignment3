@@ -5,7 +5,7 @@ from subprocess import check_output
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 
-db = SQLAlchemy(app)
+db = SQLAlchemy()
 unamelist = [] 
 pwordlist = [] 
 twofalist = []
