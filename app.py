@@ -79,7 +79,7 @@ def login():
         		        current_time = now.strftime("%H:%M:%S")
         		        logintimelist.append(current_time)
         	    if pwordlist[index] == pword:
-        		    message = "Success"
+        		    message = "Success "+loggedin+" is logged in"
         	    if twofalist[index] != twofa and twofalist[index] != 'no':
         		    message = "Two-factor authentication failure"
 
