@@ -10,7 +10,7 @@ from flask_sqlalchemy import SQLAlchemy
 unamelist = [] 
 pwordlist = [] 
 twofalist = []
-loggedin = ""
+loggedin = []
 loginuserlist = []
 logintimelist = []
 logouttimelist = []
@@ -73,7 +73,7 @@ def login():
         		    index2 = pwordlist.index(pword)
         		    if index == index2:
         		        message = "Success"
-        		        loggedin = uname;
+        		        loggedin[0] = uname;
         		        loginuserlist.append(uname);
         		        now = datetime.now()
         		        current_time = now.strftime("%H:%M:%S")
@@ -105,7 +105,7 @@ def spell_check():
     if request.method == 'POST':
         inputtext = request.form.get('inputtext')
         if inputtext:
-            queryuserlist.append(loggedin)
+            queryuserlist.append(loggedin[0])
             querylist.append(inputtext)
             message = "Supplied Text: "+inputtext
             #stdout = check_output(['ls','-l']).decode('utf-8')
