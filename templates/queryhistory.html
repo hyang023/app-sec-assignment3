@@ -4,8 +4,13 @@
      <h1>Query History</h1>
   </head>  
 <body>
-  {% if message %}
-    <p id=result>{{ message }}</p>
+  {% if message1 %}
+    <p id=queryid>{{ message1 }}</p>
+    <p id=username>{{ message2 }}</p>
+    <p id=querytext>{{ message3 }}</p>
+    <p id=queryresults>{{ message4 }}</p>
+  {% else %}
+    <p >Not authorized to view this page</p>  
   {% endif %}
 
 </body>
