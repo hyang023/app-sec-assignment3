@@ -68,7 +68,7 @@ def login():
         		    index2 = pwordlist.index(pword)
         		    if index == index2:
         		        message = "Success"
-                        logggedin = uname;
+        		        loggedin = uname;
         	    if pwordlist[index] == pword:
         		    message = "Success"
         	    if twofalist[index] != twofa:
