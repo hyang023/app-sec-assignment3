@@ -7,6 +7,8 @@ from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 
 #db = SQLAlchemy()
+uname = ''
+pword = ''
 unamelist = [] 
 pwordlist = [] 
 twofalist = []
