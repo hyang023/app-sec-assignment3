@@ -1,5 +1,6 @@
 import os
 import random
+from datetime import datetime
 import subprocess
 from subprocess import check_output
 from flask import Flask, render_template, request
@@ -10,8 +11,11 @@ unamelist = []
 pwordlist = [] 
 twofalist = []
 loggedin = ""
+loginuserlist = []
+logintimelist = []
+logouttimelist = []
 querylist = []
-queryuser = []
+queryuserlist = []
 
 #def create_app(config=None):
 app = Flask(__name__)
@@ -69,6 +73,10 @@ def login():
         		    if index == index2:
         		        message = "Success"
         		        loggedin = uname;
+        		        loginuserlist.append(user);
+        		        now = datetime.now()
+        		        current_time = now.strftime("%H:%M:%S")
+        		        logintimelist.append(current_time)
         	    if pwordlist[index] == pword:
         		    message = "Success"
         	    if twofalist[index] != twofa:
@@ -80,6 +88,14 @@ def login():
 def login_success():
     return render_template('login_success.html')
 
+@app.route('/logout')
+def logout():
+    loggedin = ""
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
+    logouttimelist.append(current_time)
+    return render_template('logged out')
+
 @app.route('/spell_check', methods=['post', 'get'])
 def spell_check():
     value=random.randrange(1,100)
@@ -88,7 +104,7 @@ def spell_check():
     if request.method == 'POST':
         inputtext = request.form.get('inputtext')
         if inputtext:
-            queryuser.append(loggedin)
+            queryuserlist.append(loggedin)
             querylist.append(inputtext)
             message = "Supplied Text: "+inputtext
             #stdout = check_output(['ls','-l']).decode('utf-8')
