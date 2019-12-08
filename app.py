@@ -74,7 +74,7 @@ def login():
         		    if index == index2:
         		        message = "Success"
         		        loggedin = uname;
-        		        loginuserlist.append(user);
+        		        loginuserlist.append(uname);
         		        now = datetime.now()
         		        current_time = now.strftime("%H:%M:%S")
         		        logintimelist.append(current_time)
