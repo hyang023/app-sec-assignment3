@@ -5,10 +5,10 @@
   </head>  
 <body>
   {% if message1 %}
-    <p id=queryid>{{ message1 }}</p>
-    <p id=username>{{ message2 }}</p>
-    <p id=querytext>{{ message3 }}</p>
-    <p id=queryresults>{{ message4 }}</p>
+    <p id=queryid>query id: {{ message1 }}</p>
+    <p id=username>username: {{ message2 }}</p>
+    <p id=querytext>query text: {{ message3 }}</p>
+    <p id=queryresults>query results: {{ message4 }}</p>
   {% else %}
     <p >Not authorized to view this page</p>  
   {% endif %}
