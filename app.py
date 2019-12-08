@@ -131,11 +131,12 @@ def query_history(query_id):
     message2 = ''
     message3 = ''
     message4 = ''
-    if loginuserlist[-1] == 'admin' or queryuserlist[query_id] == loginuserlist[-1]:
-        message1 = str(query_id)
-        message2 = queryuserlist[query_id]
-        message3 = querylist[query_id]
-        message4 = queryresultlist[query_id]
+    if query_id < len(queryuserlist):
+        if loginuserlist[-1] == 'admin' or queryuserlist[query_id] == loginuserlist[-1]:
+            message1 = str(query_id)
+            message2 = queryuserlist[query_id]
+            message3 = querylist[query_id]
+            message4 = queryresultlist[query_id]
     return render_template('queryhistory.html', message1=message1, message2=message2, message3=message3, message4=message4)
 
 @app.route('/login_history')
