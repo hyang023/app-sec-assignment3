@@ -91,7 +91,7 @@ def login_success():
 
 @app.route('/logout')
 def logout():
-    loggedin = ""
+    loggedin = []
     now = datetime.now()
     current_time = now.strftime("%H:%M:%S")
     logouttimelist.append(current_time)
