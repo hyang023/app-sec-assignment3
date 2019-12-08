@@ -25,6 +25,7 @@ app = Flask(__name__)
 unamelist.append("admin")
 pwordlist.append("Administrator@1")
 twofalist.append("12345678901")
+loggedin.append("")
     
     #return app
 
