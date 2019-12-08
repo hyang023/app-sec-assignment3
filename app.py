@@ -16,6 +16,7 @@ logintimelist = []
 logouttimelist = []
 querylist = []
 queryuserlist = []
+queryresultlist = []
 
 #def create_app(config=None):
 app = Flask(__name__)
@@ -116,6 +117,7 @@ def spell_check():
             stdout = check_output(['./a.out','test1.txt','wordlist.txt']).decode('utf-8')
             os.remove("test1.txt")
             message2 = "Misspelled words: "+stdout
+            queryresultlist.append(stdout)
     return render_template('spellcheck.html', message=message, message2=message2, value=value)
 
 @app.route('/history')
@@ -126,8 +128,12 @@ def history():
 
 @app.route('/history/query<int:query_id>')
 def query_history(query_id):
-    message = "History for query#"+str(query_id)+" here"
-    return render_template('queryhistory.html', message=message)
+    if loggedin == 'admin' or queryuserlist[query_id] == loggedin:
+        message1 = str(query_id)
+        message2 = loggedin
+        message3 = querylist[query_id]
+        message4 = queryresultlist[query_id]
+    return render_template('queryhistory.html', message1=message1, message2=message2, message3=message3, message4=message4)
 
 @app.route('/login_history')
 def login_history():
