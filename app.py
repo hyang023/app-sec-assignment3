@@ -10,15 +10,15 @@ unamelist = []
 pwordlist = [] 
 twofalist = []
 
-def create_app(config=None):
-    app = Flask(__name__)
-    db.init_app(app)
+#def create_app(config=None):
+app = Flask(__name__)
+db.init_app(app)
 
-    unamelist.append("admin")
-    pwordlist.append("Administrator@1")
-    twofalist.append("12345678901")
+unamelist.append("admin")
+pwordlist.append("Administrator@1")
+twofalist.append("12345678901")
     
-    return app
+    #return app
 
 @app.route('/')
 def hello_world():
