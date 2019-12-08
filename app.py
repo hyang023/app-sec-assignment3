@@ -139,8 +139,3 @@ def query_history(query_id):
 def login_history():
     message = "Admins can view login history page here"
     return render_template('loginhistory.html', message=message)
-
-if __name__ == "__main__":
-    #port = int(os.environ.get("PORT", 8000))
-    app = create_app()
-    app.run()
