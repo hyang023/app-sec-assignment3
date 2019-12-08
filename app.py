@@ -5,14 +5,17 @@ from subprocess import check_output
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 
-db = SQLAlchemy()
+#db = SQLAlchemy()
 unamelist = [] 
 pwordlist = [] 
 twofalist = []
+loggedin = ""
+querylist = []
+queryuser = []
 
 #def create_app(config=None):
 app = Flask(__name__)
-db.init_app(app)
+#db.init_app(app)
 
 unamelist.append("admin")
 pwordlist.append("Administrator@1")
@@ -65,6 +68,7 @@ def login():
         		    index2 = pwordlist.index(pword)
         		    if index == index2:
         		        message = "Success"
+                        logggedin = uname;
         	    if pwordlist[index] == pword:
         		    message = "Success"
         	    if twofalist[index] != twofa:
@@ -84,6 +88,8 @@ def spell_check():
     if request.method == 'POST':
         inputtext = request.form.get('inputtext')
         if inputtext:
+            queryuser.append(loggedin)
+            querylist.append(inputtext)
             message = "Supplied Text: "+inputtext
             #stdout = check_output(['ls','-l']).decode('utf-8')
             f= open("test1.txt","w+")
