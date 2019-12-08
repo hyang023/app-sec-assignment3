@@ -130,6 +130,10 @@ def history():
 
 @app.route('/history/query<int:query_id>')
 def query_history(query_id):
+    message1 = ''
+    message2 = ''
+    message3 = ''
+    message4 = ''
     if loggedin == 'admin' or queryuserlist[query_id] == loggedin:
         message1 = str(query_id)
         message2 = queryuserlist[query_id]
