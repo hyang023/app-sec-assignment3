@@ -80,7 +80,7 @@ def login():
         		        logintimelist.append(current_time)
         	    if pwordlist[index] == pword:
         		    message = "Success"
-        	    if twofalist[index] != twofa:
+        	    if twofalist[index] != twofa and twfalist[index] != 'no':
         		    message = "Two-factor authentication failure"
 
     return render_template('login.html', message=message, value=value)
