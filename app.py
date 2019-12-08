@@ -12,7 +12,6 @@ pword = ''
 unamelist = [] 
 pwordlist = [] 
 twofalist = []
-loggedin = ''
 loginuserlist = []
 logintimelist = []
 logouttimelist = []
@@ -75,13 +74,12 @@ def login():
         		    index2 = pwordlist.index(pword)
         		    if index == index2:
         		        message = "Success"
-        		        loggedin = uname;
         		        loginuserlist.append(uname);
         		        now = datetime.now()
         		        current_time = now.strftime("%H:%M:%S")
         		        logintimelist.append(current_time)
         	    if pwordlist[index] == pword:
-        		    message = "Success "+loggedin+" is logged in"
+        		    message = "Success "+loginuserlist[-1]+" is logged in"
         	    if twofalist[index] != twofa and twofalist[index] != 'no':
         		    message = "Two-factor authentication failure"
 
@@ -93,7 +91,6 @@ def login_success():
 
 @app.route('/logout')
 def logout():
-    loggedin = []
     now = datetime.now()
     current_time = now.strftime("%H:%M:%S")
     logouttimelist.append(current_time)
@@ -107,7 +104,7 @@ def spell_check():
     if request.method == 'POST':
         inputtext = request.form.get('inputtext')
         if inputtext:
-            queryuserlist.append(loggedin)
+            queryuserlist.append(loginuserlist[-1])
             querylist.append(inputtext)
             message = "Supplied Text: "+inputtext
             #stdout = check_output(['ls','-l']).decode('utf-8')
@@ -134,7 +131,7 @@ def query_history(query_id):
     message2 = ''
     message3 = ''
     message4 = ''
-    if loggedin == 'admin' or queryuserlist[query_id] == loggedin:
+    if loginuserlist[-1] == 'admin' or queryuserlist[query_id] == loginuserlist[-1]:
         message1 = str(query_id)
         message2 = queryuserlist[query_id]
         message3 = querylist[query_id]
