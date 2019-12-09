@@ -4,9 +4,22 @@
      <h1> Login History</h1>
   </head>  
 <body>
+  {% if user == "admin" %}
+     <form action="" method="post">
+       <input type="hidden" name="csrf_token" id="csrf_token" value="{{ value }}">
+       Text Submission <input type="text" placeholder="Input Text" name="inputtext"  id=inputtext required>
+       <input type="submit" name="submit">
+     </form>
+  {% endif %}
+  
   {% if message1 %}
-    <p id=numqueries>{{ message1 }}</p>
-    <p id=querylist>{{ message2 }}</p>
+     <p id=numqueries>{{ message1 }}</p>
+     <p id=querylist>{{ message2 }}</p>
+     {% for num in message2 %}
+       <a href="{{ url_for('history/query{{num}}') }}" id="query{{num}}">query#{{num}}</a>
+{% for user in users %}
+    <option value="{{ user.id }}">{{ user.email }}</option>
+{% endfor %}
   {% endif %}
 </body>
 </html>
