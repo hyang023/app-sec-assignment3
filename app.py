@@ -87,14 +87,14 @@ def login():
 
 @app.route('/login_success', methods=['POST'])
 def login_success():
-    return 'login_success.html'
+    return render_template('login_success.html')
 
 @app.route('/logout')
 def logout():
     now = datetime.now()
     current_time = now.strftime("%H:%M:%S")
     logouttimelist.append(current_time)
-    return render_template('logged out')
+    return 'logged out'
 
 @app.route('/spell_check', methods=['post', 'get'])
 def spell_check():
