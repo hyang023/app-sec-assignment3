@@ -154,5 +154,9 @@ def query_history(query_id):
 
 @app.route('/login_history')
 def login_history():
+    value=random.randrange(1,100)
+    user = ''
+    if len(logintimelist)>len(logouttimelist):
+        user = loginuserlist[-1]
     message = "Admins can view login history page here"
-    return render_template('loginhistory.html', message=message)
+    return render_template('loginhistory.html', message=message, value= value, user=user)
