@@ -12,7 +12,6 @@ pword = ''
 unamelist = [] 
 pwordlist = [] 
 twofalist = []
-loggedin = False
 loginuserlist = []
 logintimelist = []
 logouttimelist = []
@@ -75,7 +74,6 @@ def login():
         		    index2 = pwordlist.index(pword)
         		    if index == index2:
         		        message = "Success"
-        		        loggedin = True
         		        loginuserlist.append(uname);
         		        now = datetime.now()
         		        current_time = now.strftime("%H:%M:%S")
@@ -94,7 +92,6 @@ def login_success():
 @app.route('/logout')
 def logout():
     now = datetime.now()
-    loggedout = False
     current_time = now.strftime("%H:%M:%S")
     logouttimelist.append(current_time)
     return render_template('logged out')
@@ -128,16 +125,16 @@ def history():
     message1 = ''
     message2 = []
     user = ''
-    if loggedin:
+    if len(logintimelist)>len(logouttimelist):
         user = loginuserlist[-1]
         
     if request.method == 'POST':
         inputtext = request.form.get('inputtext')
         
-    if loggedin and loginunserlist[-1] == 'admin' and inputtext:
+    if len(logintimelist)>len(logouttimelist) and loginunserlist[-1] == 'admin' and inputtext:
         message2 = [index for index, value in enumerate(queryuserlist) if value == inputtext]
         message1 = inputtext+" has made "+len(message2)+" queries"
-    elif loggedin:
+    elif len(logintimelist)<len(logouttimelist):
         message2 = [index for index, value in enumerate(queryuserlist) if value == loginuserlist[-1]]
         message1 = "you have made "+len(message2)+" queries"
     return render_template('history.html', message1=message1, message2=message2, user=user, value=value)
