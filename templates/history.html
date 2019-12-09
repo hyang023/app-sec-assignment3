@@ -7,7 +7,7 @@
   {% if user == "admin" %}
      <form action="" method="post">
        <input type="hidden" name="csrf_token" id="csrf_token" value="{{ value }}">
-       Text Submission <input type="text" placeholder="Input Text" name="inputtext"  id=inputtext required>
+       Enter User <input type="text" placeholder="Input Text" name="inputtext"  id=inputtext required>
        <input type="submit" name="submit">
      </form>
   {% endif %}
