@@ -12,13 +12,16 @@
     <input type="submit" name="submit">
   </form>
   {% endif %}
-  {% for loginnum in temp %}
+  (% if inputuser %}
+  <h3> Login history for {{ inputuser }}</h3>
+  {% for loginnum in message1 %}
   <dl>
     <dt id="login{{ loginnum }}">Login# {{ loginnum }}</dt>
-    <dd id="login{{ loginnum}}_time"> Login time for {{loginnum }}</dd>
-    <dd id="logout{{ loginnum}}_time"> Logout time for {{ loginnum }}</dd>
+    <dd id="login{{ loginnum}}_time"> Login time: {{ message2 }}</dd>
+    <dd id="logout{{ loginnum}}_time"> Logout time: {{ message3 }}</dd>
   </dl>
   {% endfor %}
+  {% endif %}
 </body>
 </html>
 © 2019 GitHub, Inc.
