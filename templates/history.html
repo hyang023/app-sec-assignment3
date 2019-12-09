@@ -15,7 +15,7 @@
   {% if message1 %}
   <p id=numqueries>{{ message1 }}</p>
      {% for query in message2 %}
-  <p id="query#{{ query }}"><a href={{ url_for('history/query', query_id=query) }}> query </a></p>
+  <p id="query#{{ query }}"><a href={{ url_for('query_history', query_id=query) }}> query#{{ query }} </a></p>
      {% endfor %}
   {% else %}
   <p> unauthorized </p>
