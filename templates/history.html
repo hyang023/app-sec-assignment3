@@ -14,7 +14,6 @@
   
   {% if message1 %}
   <p id=numqueries>{{ message1 }}</p>
-  <p id=querylist>{{ message2 }}</p>
      {% for query in message2 %}
   <p id="{{ query }}">query</p>
      {% endfor %}
