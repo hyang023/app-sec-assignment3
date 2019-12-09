@@ -122,14 +122,25 @@ def spell_check():
             queryresultlist.append(stdout)
     return render_template('spellcheck.html', message=message, message2=message2, value=value)
 
-@app.route('/history')
+@app.route('/history', methods=['post', 'get'])
 def history():
-    indices = []
+    value=random.randrange(1,100)
     message1 = ''
-    message2 = ''
-    message1 = "you have made [number] queries"
-    message2 = "All of your queries are listed here"
-    return render_template('history.html', message1=message1, message2=message2)
+    message2 = []
+    user = ''
+    if loggedin:
+        user = loginuserlist[-1]
+        
+    if request.method == 'POST':
+        inputtext = request.form.get('inputtext')
+        
+    if loggedin and loginunserlist[-1] == 'admin' and inputtext:
+        message2 = [index for index, value in enumerate(queryuserlist) if value == inputtext]
+        message1 = inputtext+" has made "+len(message2)" queries"
+    elif loggedin:
+        message2 = [index for index, value in enumerate(queryuserlist) if value == loginuserlist[-1]]
+        message1 = "you have made "+len(message2)+" queries"
+    return render_template('history.html', message1=message1, message2=message2, user=user, value=value)
 
 @app.route('/history/query<int:query_id>')
 def query_history(query_id):
