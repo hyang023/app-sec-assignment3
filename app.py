@@ -87,7 +87,7 @@ def login():
 
 @app.route('/login_success', methods=['POST'])
 def login_success():
-    return render_template('login_success.html')
+    return 'login_success.html'
 
 @app.route('/logout')
 def logout():
