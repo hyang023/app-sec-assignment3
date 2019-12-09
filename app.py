@@ -157,6 +157,7 @@ def login_history():
     value=random.randrange(1,100)
     user = ''
     message = "Admins can view login history page here"
+    temp = []
     if len(logintimelist)>len(logouttimelist):
         user = loginuserlist[-1]
         
