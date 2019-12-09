@@ -152,11 +152,16 @@ def query_history(query_id):
             message4 = queryresultlist[query_id]
     return render_template('queryhistory.html', message1=message1, message2=message2, message3=message3, message4=message4)
 
-@app.route('/login_history')
+@app.route('/login_history',  methods=['post', 'get'])
 def login_history():
     value=random.randrange(1,100)
     user = ''
+    message = "Admins can view login history page here"
     if len(logintimelist)>len(logouttimelist):
         user = loginuserlist[-1]
-    message = "Admins can view login history page here"
+        
+    if request.method == 'POST':
+        inputtext = request.form.get('inputtext')
+        if len(logintimelist)>len(logouttimelist) and loginuserlist[-1] == 'admin' and inputtext:
+            temp = [str(index) for index, value in enumerate(queryuserlist) if value == inputtext]
     return render_template('loginhistory.html', message=message, value= value, user=user)
