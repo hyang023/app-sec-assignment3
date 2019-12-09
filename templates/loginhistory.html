@@ -14,13 +14,13 @@
   {% endif %}
   (% if inputuser %}
   <h3> Login history for {{ inputuser }}</h3>
-  {% for loginnum in message1 %}
+    {% for loginnum in message1 %}
   <dl>
     <dt id="login{{ loginnum }}">Login# {{ loginnum }}</dt>
     <dd id="login{{ loginnum}}_time"> Login time: {{ message2 }}</dd>
     <dd id="logout{{ loginnum}}_time"> Logout time: {{ message3 }}</dd>
   </dl>
-  {% endfor %}
+    {% endfor %}
   {% endif %}
 </body>
 </html>
