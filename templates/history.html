@@ -15,8 +15,8 @@
   {% if message1 %}
      <p id=numqueries>{{ message1 }}</p>
      <p id=querylist>{{ message2 }}</p>
-     {% for num in message2 %}
-       <a href="{{ url_for('history/query{{num}}') }}" id="query{{num}}">query#{{num}}</a>
+     {% for query in message2 %}
+       <a href="{{ url_for('history/{query}}') }}" id="{{query}}">{{query}}</a>
      {% endfor %}
   {% endif %}
 </body>
