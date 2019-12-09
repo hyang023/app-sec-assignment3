@@ -133,7 +133,7 @@ def history():
         if len(logintimelist)>len(logouttimelist) and loginuserlist[-1] == 'admin' and inputtext:
             message2 = ["history/query#"+str(index) for index, value in enumerate(queryuserlist) if value == inputtext]
             message1 = inputtext+" has made "+str(len(message2))+" queries"
-    elif len(logintimelist)<len(logouttimelist):
+    elif len(logintimelist)>len(logouttimelist):
         message2 = ["history/query#"+str(index) for index, value in enumerate(queryuserlist) if value == loginuserlist[-1]]
         message1 = "you have made "+str(len(message2))+" queries"
     return render_template('history.html', message1=message1, message2=message2, user=user, value=value)
