@@ -4,16 +4,21 @@
      <h1> Login History</h1>
   </head>  
 <body>
+  <p id=result>{{ message }}</p>
   {% if user == "admin" %}
-     <form action="" method="post">
-       <input type="hidden" name="csrf_token" id="csrf_token" value="{{ value }}">
-       Enter User <input type="text" placeholder="Input Text" name="inputtext"  id=inputtext required>
-       <input type="submit" name="submit">
-     </form>
+  <form action="" method="post">
+    <input type="hidden" name="csrf_token" id="csrf_token" value="{{ value }}">
+    Enter User <input type="text" placeholder="Input Text" name="inputtext"  id=inputtext required>
+    <input type="submit" name="submit">
+  </form>
   {% endif %}
-  {% if message %}
-    <p id=result>{{ message }}</p>
-  {% endif %}
+  {% for loginnum in temp %}
+  <dl>
+    <dt id="login{{ loginnum }}">Login# {{ loginnum }}</dt>
+    <dd id="login{{ loginnum}}_time"> Login time for {{loginnum }}</dd>
+    <dd id="logout{{ loginnum}}_time"> Logout time for {{ loginnum }}</dd>
+  </dl>
+  {% endfor %}
 </body>
 </html>
 © 2019 GitHub, Inc.
