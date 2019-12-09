@@ -164,4 +164,4 @@ def login_history():
         inputtext = request.form.get('inputtext')
         if len(logintimelist)>len(logouttimelist) and loginuserlist[-1] == 'admin' and inputtext:
             temp = [str(index) for index, value in enumerate(queryuserlist) if value == inputtext]
-    return render_template('loginhistory.html', message=message, value= value, user=user)
+    return render_template('loginhistory.html', message=message, temp=temp, value= value, user=user)
