@@ -130,10 +130,9 @@ def history():
         
     if request.method == 'POST':
         inputtext = request.form.get('inputtext')
-        
-    if len(logintimelist)>len(logouttimelist) and loginuserlist[-1] == 'admin' and inputtext:
-        message2 = [index for index, value in enumerate(queryuserlist) if value == inputtext]
-        message1 = inputtext+" has made "+len(message2)+" queries"
+        if len(logintimelist)>len(logouttimelist) and loginuserlist[-1] == 'admin' and inputtext:
+            message2 = [index for index, value in enumerate(queryuserlist) if value == inputtext]
+            message1 = inputtext+" has made "+len(message2)+" queries"
     elif len(logintimelist)<len(logouttimelist):
         message2 = [index for index, value in enumerate(queryuserlist) if value == loginuserlist[-1]]
         message1 = "you have made "+len(message2)+" queries"
