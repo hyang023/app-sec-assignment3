@@ -12,7 +12,6 @@
     <input type="submit" name="submit">
   </form>
   {% endif %}
-  (% if inputuser %}
   <h3> Login history for {{ inputuser }}</h3>
     {% for loginnum in message1 %}
   <dl>
@@ -21,7 +20,6 @@
     <dd id="logout{{ loginnum}}_time"> Logout time: {{ message3 }}</dd>
   </dl>
     {% endfor %}
-  {% endif %}
 </body>
 </html>
 © 2019 GitHub, Inc.
