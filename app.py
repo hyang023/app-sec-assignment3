@@ -172,5 +172,8 @@ def login_history():
             message1 = [str(index) for index, value in enumerate(queryuserlist) if value == inputtext]
             for x in temp:
                 message2.append(logintimelist[x])
-                message3.append(logouttimelist[x])
-    return render_template('loginhistory.html', message=message, message1=message1, message2=message2, message3=message3, value= value, user=user, inputuser=inputuser)
+                if len(logintimelist) == len(logouttimelist) or x < (len(logouttimelist)):
+                    message3.append(logouttimelist[x])
+                else:
+                    message3.append("N/A")
+    return render_template('loginhistory.html', message=message, message1=message1, message2=message2, message3=message3, value= value, user=user)
