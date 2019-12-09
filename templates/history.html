@@ -17,9 +17,7 @@
      <p id=querylist>{{ message2 }}</p>
      {% for num in message2 %}
        <a href="{{ url_for('history/query{{num}}') }}" id="query{{num}}">query#{{num}}</a>
-{% for user in users %}
-    <option value="{{ user.id }}">{{ user.email }}</option>
-{% endfor %}
+     {% endfor %}
   {% endif %}
 </body>
 </html>
