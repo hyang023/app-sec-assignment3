@@ -12,6 +12,7 @@ pword = ''
 unamelist = [] 
 pwordlist = [] 
 twofalist = []
+loggedin = False
 loginuserlist = []
 logintimelist = []
 logouttimelist = []
@@ -74,6 +75,7 @@ def login():
         		    index2 = pwordlist.index(pword)
         		    if index == index2:
         		        message = "Success"
+                        loggedin = True
         		        loginuserlist.append(uname);
         		        now = datetime.now()
         		        current_time = now.strftime("%H:%M:%S")
@@ -92,6 +94,7 @@ def login_success():
 @app.route('/logout')
 def logout():
     now = datetime.now()
+    loggedout = False
     current_time = now.strftime("%H:%M:%S")
     logouttimelist.append(current_time)
     return render_template('logged out')
@@ -121,6 +124,9 @@ def spell_check():
 
 @app.route('/history')
 def history():
+    indices = []
+    message1 = ''
+    message2 = ''
     message1 = "you have made [number] queries"
     message2 = "All of your queries are listed here"
     return render_template('history.html', message1=message1, message2=message2)
