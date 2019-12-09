@@ -157,12 +157,20 @@ def login_history():
     value=random.randrange(1,100)
     user = ''
     message = "Admins can view login history page here"
-    temp = []
+    message1 = []
+    message2 = []
+    message3 = []
+    inputuser = ''
     if len(logintimelist)>len(logouttimelist):
         user = loginuserlist[-1]
         
     if request.method == 'POST':
         inputtext = request.form.get('inputtext')
         if len(logintimelist)>len(logouttimelist) and loginuserlist[-1] == 'admin' and inputtext:
-            temp = [str(index) for index, value in enumerate(queryuserlist) if value == inputtext]
-    return render_template('loginhistory.html', message=message, temp=temp, value= value, user=user)
+            inputuser = inputtext
+            temp = [index for index, value in enumerate(queryuserlist) if value == inputtext]
+            message1 = [str(index) for index, value in enumerate(queryuserlist) if value == inputtext]
+            for x in temp:
+                message2.append(logintimelist[x])
+                message3.append(logouttimelist[x])
+    return render_template('loginhistory.html', message=message, message1=message1, message2=message2, message3=message3, value= value, user=user, inputuser=inputuser)
