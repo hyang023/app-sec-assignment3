@@ -63,7 +63,6 @@ def register():
         uname = request.form.get('uname')
         pword = request.form.get('pword')
         twofa = request.form.get('2fa')
-
         if uname  and pword :
         	if uname in unamelist:
         	    message="Failure: username already exists"
@@ -76,7 +75,6 @@ def register():
         	    else:
         	        twofalist.append('no')
         	    message = "Success. Your username is "+uname
-
     return render_template('registration.html', message=message, value=value)
 
 @app.route('/login',  methods=['post', 'get'])
@@ -87,7 +85,6 @@ def login():
         uname = request.form.get('uname')
         pword = request.form.get('pword')
         twofa = request.form.get('2fa')
-
         if uname  and pword :
         	message = "Incorrect password "+uname
         	if uname in unamelist:
@@ -104,7 +101,6 @@ def login():
         		    message = "Success "+loginuserlist[-1]+" is logged in at "+current_time
         	    if twofalist[index] != twofa and twofalist[index] != 'no':
         		    message = "Two-factor authentication failure"
-
     return render_template('login.html', message=message, value=value)
 
 @app.route('/login_success', methods=['POST'])
@@ -148,8 +144,7 @@ def history():
     message2 = []
     user = ''
     if len(logintimelist)>len(logouttimelist):
-        user = loginuserlist[-1]
-        
+        user = loginuserlist[-1]    
     if request.method == 'POST':
         inputtext = request.form.get('inputtext')
         if len(logintimelist)>len(logouttimelist) and loginuserlist[-1] == 'admin' and inputtext:
@@ -184,8 +179,7 @@ def login_history():
     message3 = []
     inputuser = ''
     if len(logintimelist)>len(logouttimelist):
-        user = loginuserlist[-1]
-        
+        user = loginuserlist[-1]   
     if request.method == 'POST':
         inputtext = request.form.get('inputtext')
         if len(logintimelist)>len(logouttimelist) and loginuserlist[-1] == 'admin' and inputtext:
