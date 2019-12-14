@@ -6,7 +6,6 @@ from subprocess import check_output
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 
-db = SQLAlchemy()
 uname = ''
 pword = ''
 unamelist = [] 
@@ -21,7 +20,8 @@ queryresultlist = []
 
 #def create_app(config=None):
 app = Flask(__name__)
-db.init_app(app)
+
+db = SQLAlchemy(app)
 
 unamelist.append("admin")
 pwordlist.append("Administrator@1")
