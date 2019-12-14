@@ -33,6 +33,7 @@ class Query(db.Model):
     querytxt = db.Column(db.Text())
     misspell = db.Column(db.Text())
     queryusr = db.Column(db.String(80), ForeignKey(User.username))
+    username = relationship('User', foreign_keys='Query.username')
 
 unamelist.append("admin")
 pwordlist.append("Administrator@1")
