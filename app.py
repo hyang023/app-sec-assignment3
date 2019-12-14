@@ -91,7 +91,7 @@ def login():
         		        message = "Success"
         		        loginuserlist.append(uname);
         		        now = datetime.now()
-        		        current_time = now.strftime("%H:%M:%S")
+        		        current_time = now.strftime("%Y-%m-%d %H:%M:%S")
         		        logintimelist.append(current_time)
         	    if pwordlist[index] == pword:
         		    message = "Success "+loginuserlist[-1]+" is logged in at "+current_time
