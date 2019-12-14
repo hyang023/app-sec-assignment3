@@ -28,6 +28,12 @@ class User(db.Model):
     password = db.Column(db.String(80))
     twofactr = db.Column(db.Integer())
 
+class Query(db.Model):
+    query_id = db.Column(db.Integer(), primary_key=True)
+    querytxt = db.Column(db.Text())
+    misspell = db.Column(db.Text())
+    queryusr = db.Column(db.String(80), ForeignKey(User.username))
+
 unamelist.append("admin")
 pwordlist.append("Administrator@1")
 twofalist.append("12345678901")
