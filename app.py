@@ -24,7 +24,7 @@ app = Flask(__name__)
 db = SQLAlchemy(app)
 
 class User(db.Model):
-    username = db.Column(db.String(80), unique=True)
+    username = db.Column(db.String(80), primary_key=True)
     password = db.Column(db.String(80))
     twofactr = db.Column(db.Integer())
 
