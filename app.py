@@ -26,7 +26,7 @@ db = SQLAlchemy(app)
 class User(db.Model):
     username = db.Column(db.String(80), unique=True)
     password = db.Column(db.String(80))
-    twofactr = db.Column(db.Integer(11))
+    twofactr = db.Column(db.Integer())
 
 unamelist.append("admin")
 pwordlist.append("Administrator@1")
