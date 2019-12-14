@@ -35,6 +35,13 @@ class Query(db.Model):
     misspell = db.Column(db.Text())
     queryusr = db.Column(db.String(80), db.ForeignKey(User.username))
     username = db.relationship('User', foreign_keys='Query.username')
+    
+class Login(db.Model):
+    login_id = db.Column(db.Integer(), primary_key=True)
+    logitime = db.Column(db.String(30))
+    logotime = db.Column(db.String(30))
+    loginusr = db.Column(db.String(80), db.ForeignKey(User.username))
+    username = db.relationship('User', foreign_keys='Query.username')
 
 db.create_all()    
     
