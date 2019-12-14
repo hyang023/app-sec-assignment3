@@ -48,6 +48,9 @@ db.create_all()
 unamelist.append("admin")
 pwordlist.append("Administrator@1")
 twofalist.append("12345678901")
+
+admin = User(username='admin', password='admin@example.com', twofactr='12345678901')
+db.session.add(admin)
     
     #return app
 
