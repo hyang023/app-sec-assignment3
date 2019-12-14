@@ -20,7 +20,7 @@ queryresultlist = []
 
 #def create_app(config=None):
 app = Flask(__name__)
-
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
 db = SQLAlchemy(app)
 
 class User(db.Model):
@@ -35,6 +35,8 @@ class Query(db.Model):
     queryusr = db.Column(db.String(80), db.ForeignKey(User.username))
     username = db.relationship('User', foreign_keys='Query.username')
 
+db.create_all()    
+    
 unamelist.append("admin")
 pwordlist.append("Administrator@1")
 twofalist.append("12345678901")
