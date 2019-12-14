@@ -32,7 +32,7 @@ class Query(db.Model):
     query_id = db.Column(db.Integer(), primary_key=True)
     querytxt = db.Column(db.Text())
     misspell = db.Column(db.Text())
-    queryusr = db.Column(db.String(80), ForeignKey(User.username))
+    queryusr = db.Column(db.String(80), db.ForeignKey(User.username))
     username = relationship('User', foreign_keys='Query.username')
 
 unamelist.append("admin")
