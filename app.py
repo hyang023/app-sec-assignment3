@@ -22,6 +22,7 @@ logincount = 0
 loginaddon = random.randrange(1,100)
 querycount = 0
 queryaddon = random.randrange(1,100)
+loggedin = ''
 
 #def create_app(config=None):
 app = Flask(__name__)
@@ -121,6 +122,8 @@ def login():
                     logincount = logincount + 1
                     loginnum = logincount+loginaddon
                     addlogin = Login(login_id=logincount,logitime=current_time,logotime='no',loginusr=uname)
+                    global loggedin
+                    loggedin = uname
                     message = "Success "+uname+" is logged in at "+current_time
                 else:
                     message = "Two-factor authentication failure"
@@ -136,7 +139,9 @@ def login_success():
 def logout():
     now = datetime.now()
     current_time = now.strftime("%Y-%m-%d %H:%M:%S")
-    logouttimelist.append(current_time)
+    global loggedin
+    checkuser = Login.query.filter_by(desc(Login.login_id)).limit(1)
+    checkuser.logotime = current_time
     return 'logged out'
 
 @app.route('/spell_check', methods=['post', 'get'])
