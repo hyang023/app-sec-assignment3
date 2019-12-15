@@ -121,7 +121,7 @@ def login():
                     logincount = logincount + 1
                     loginnum = logincount+loginaddon
                     addlogin = Login(login_id=logincount,logitime=current_time,logotime='no',loginusr=uname)
-                    message = "Success "+loginuserlist[-1]+" is logged in at "+current_time
+                    message = "Success "+uname+" is logged in at "+current_time
                 else:
                     message = "Two-factor authentication failure"
             else:
@@ -135,7 +135,7 @@ def login_success():
 @app.route('/logout')
 def logout():
     now = datetime.now()
-    current_time = now.strftime("%H:%M:%S")
+    current_time = now.strftime("%Y-%m-%d %H:%M:%S")
     logouttimelist.append(current_time)
     return 'logged out'
 
