@@ -51,6 +51,7 @@ twofalist.append("12345678901")
 
 admin = User(username='admin', password='admin@example.com', twofactr='12345678901')
 db.session.add(admin)
+db.session.commit()
     
     #return app
 
