@@ -28,6 +28,8 @@ class User(db.Model):
     username = db.Column(db.String(80), primary_key=True)
     password = db.Column(db.String(80))
     twofactr = db.Column(db.Integer())
+    queries  = db.relationship('Query', backref=db.backref('user', lazy='joined'), lazy='select')
+    logins   = db.relationship('Login', backref=db.backref('user', lazy='joined'), lazy='select')
     def __repr__(self):
         return '<User %r>' % self.username
 
@@ -35,8 +37,7 @@ class Query(db.Model):
     query_id = db.Column(db.Integer(), primary_key=True)
     querytxt = db.Column(db.Text())
     misspell = db.Column(db.Text())
-    queryusr = db.Column(db.String(80), db.ForeignKey(User.username))
-    username = db.relationship('User', foreign_keys='Query.username')
+    queryusr = db.Column(db.String(80), db.ForeignKey('user.username'), nullable=False)
     def __repr__(self):
         return '<Query %r>' % self.username
     
@@ -44,8 +45,7 @@ class Login(db.Model):
     login_id = db.Column(db.Integer(), primary_key=True)
     logitime = db.Column(db.String(30))
     logotime = db.Column(db.String(30))
-    loginusr = db.Column(db.String(80), db.ForeignKey(User.username))
-    username = db.relationship('User', foreign_keys='Query.username')
+    loginusr = db.Column(db.String(80), db.ForeignKey('user.username'), nullable=False)
     def __repr__(self):
         return '<Login %r>' % self.username
 
