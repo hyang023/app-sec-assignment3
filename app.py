@@ -73,7 +73,7 @@ def hello_world():
     alllogins = Login.query.all()
     countlogins = len(alllogins)
     output = "num logins is "+str(countlogins)
-    for login in alllogins
+    for login in alllogins:
         output = output+" query: "+login.login_id
     return output
 
