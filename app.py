@@ -66,7 +66,7 @@ db.session.commit()
 def hello_world():
     missing = User.query.filter_by(username='missing').first()
     testadmin = User.query.filter_by(username='admin').first()
-    testpass = str(testadmin.password) is 'Administrator@1'
+    testpass = str(testadmin.password) == 'Administrator@1'
     output = "missing is "+str(missing is None)+" and admin pass is "+str(testpass)
     return output
 
