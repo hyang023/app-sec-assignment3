@@ -155,7 +155,6 @@ def logout():
         checkuser.logotime = current_time
         db.session.commit()
         message = 'logged out'
-        global loggedin
         loggedin = ''
     else:
        message = 'you must be logged in to log out'
