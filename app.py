@@ -70,7 +70,8 @@ db.session.commit()
 
 @app.route('/')
 def hello_world():
-    countlogins = Login.count()
+    alllogins = Login.query.all()
+    countlogins = len(alllogins)
     output = "num logins is "+str(countlogins)
     return output
 
