@@ -28,7 +28,6 @@ class User(db.Model):
     username = db.Column(db.String(80), primary_key=True)
     password = db.Column(db.String(80))
     twofactr = db.Column(db.Integer())
-    
     def __repr__(self):
         return '<User %r>' % self.username
 
