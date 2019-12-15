@@ -66,7 +66,7 @@ db.session.commit()
 def hello_world():
     missing = User.query.filter_by(username='missing').first()
     testadmin = User.query.filter_by(username='admin').first()
-    output = "missing is "+str(missing is None)+" and admin pass is "+str(testadmin.password)
+    output = "missing is "+str(missing is None)+" and admin pass is "+(str(testadmin.password)='Administrator@1')
     return output
 
 @app.route('/register', methods=['post', 'get'])
@@ -85,14 +85,13 @@ def register():
         	else:
         	    unamelist.append(uname)
         	    pwordlist.append(pword)
+        	    if twofa:
+        	        if not twofa.isdigit():
+        	            twofa = 'no'
+        	    twofalist.append('no')
         	    adduser = User(username=uname, password=pword, twofactr=twofa)
         	    db.session.add(adduser)
         	    db.session.commit()
-        	    if twofa:
-        	        #if twofa.isdigit():
-        	        twofalist.append(twofa)
-        	    else:
-        	        twofalist.append('no')
         	    message = "Success. Your username is "+uname
     return render_template('registration.html', message=message, value=value)
 
@@ -105,12 +104,14 @@ def login():
         pword = request.form.get('pword')
         twofa = request.form.get('2fa')
         if uname  and pword :
-        	message = "Incorrect password "+uname
+        	message = "Invalid login for "+uname
         	if uname in unamelist:
         	    index = unamelist.index(uname)
         	    if pword in pwordlist:
         		    index2 = pwordlist.index(pword)
         		    if index == index2:
+        	#checkuser = User.query.filter_by(username=uname).first()
+            #if checkuser is not None and :
         		        message = "Success"
         		        loginuserlist.append(uname);
         		        now = datetime.now()
