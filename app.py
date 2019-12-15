@@ -123,6 +123,8 @@ def login():
                     logincount = logincount + 1
                     loginnum = logincount+loginaddon
                     addlogin = Login(login_id=logincount,logitime=current_time,logotime='no',loginusr=uname)
+                    db.session.add(addlogin)
+                    db.session.commit()
                     global loggedin
                     loggedin = uname
                     message = "Success "+uname+" is logged in at "+current_time
