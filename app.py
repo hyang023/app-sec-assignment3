@@ -55,9 +55,9 @@ unamelist.append("admin")
 pwordlist.append("Administrator@1")
 twofalist.append("12345678901")
 
-#admin = User(username='admin', password='admin@example.com', twofactr='12345678901')
-#db.session.add(admin)
-#db.session.commit()
+admin = User(username='admin', password='admin@example.com', twofactr='12345678901')
+db.session.add(admin)
+db.session.commit()
     
     #return app
 
@@ -65,7 +65,7 @@ twofalist.append("12345678901")
 def hello_world():
     missing = User.query.filter_by(username='missing').first()
     testadmin = User.query.filter_by(username='admin').first()
-    output = "missing is "+str(missing is None)+" and admin pass is "+str(testadmin.password)
+    output = "missing is "+str(missing is None)+" and admin pass is "+str(testadmin)
     return output
 
 @app.route('/register', methods=['post', 'get'])
