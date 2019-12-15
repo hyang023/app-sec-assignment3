@@ -137,12 +137,20 @@ def login_success():
 
 @app.route('/logout')
 def logout():
+    message = ''
     now = datetime.now()
     current_time = now.strftime("%Y-%m-%d %H:%M:%S")
     global loggedin
-    checkuser = Login.query.filter_by(Login.login_id.desc()).limit(1)
-    checkuser.logotime = current_time
-    return 'logged out'
+    if loggedin:
+        global logincount
+        loginnum = logincount+loginaddon
+        checkuser = Login.query.filter_by(login_id=loginnum).first()
+        checkuser.logotime = current_time
+        db.session.commit()
+        message = 'logged out'
+    else:
+       message = 'you must be logged in to log out'
+    return message
 
 @app.route('/spell_check', methods=['post', 'get'])
 def spell_check():
