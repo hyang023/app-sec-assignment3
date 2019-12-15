@@ -126,7 +126,7 @@ def login():
                     global loginaddon
                     logincount = logincount + 1
                     loginnum = logincount+loginaddon
-                    addlogin = Login(login_id=logincount,logitime=current_time,logotime='no',loginusr=uname)
+                    addlogin = Login(login_id=loginnum,logitime=current_time,logotime='no',loginusr=uname)
                     db.session.add(addlogin)
                     db.session.commit()
                     global loggedin
