@@ -117,7 +117,7 @@ def login():
                     now = datetime.now()
                     current_time = now.strftime("%Y-%m-%d %H:%M:%S")
                     logintimelist.append(current_time)
-                    logincount = logincount+1
+                    logincount = logincount + 1
                     loginnum = logincount+loginaddon
                     addlogin = Login(login_id=logincount,logitime=current_time,logotime='no',loginusr=uname)
                     message = "Success "+loginuserlist[-1]+" is logged in at "+current_time
