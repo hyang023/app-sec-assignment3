@@ -37,6 +37,8 @@ class Query(db.Model):
     misspell = db.Column(db.Text())
     queryusr = db.Column(db.String(80), db.ForeignKey(User.username))
     username = db.relationship('User', foreign_keys='Query.username')
+    def __repr__(self):
+        return '<Query %r>' % self.username
     
 class Login(db.Model):
     login_id = db.Column(db.Integer(), primary_key=True)
@@ -44,6 +46,8 @@ class Login(db.Model):
     logotime = db.Column(db.String(30))
     loginusr = db.Column(db.String(80), db.ForeignKey(User.username))
     username = db.relationship('User', foreign_keys='Query.username')
+    def __repr__(self):
+        return '<Login %r>' % self.username
 
 db.create_all()    
     
