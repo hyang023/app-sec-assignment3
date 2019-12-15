@@ -27,7 +27,7 @@ db = SQLAlchemy(app)
 class User(db.Model):
     username = db.Column(db.String(80), primary_key=True)
     password = db.Column(db.String(80))
-    twofactr = db.Column(db.Integer())
+    twofactr = db.Column(db.String(20))
     queries  = db.relationship('Query', backref=db.backref('user', lazy='joined'), lazy='select')
     logins   = db.relationship('Login', backref=db.backref('user', lazy='joined'), lazy='select')
     def __repr__(self):
@@ -77,9 +77,6 @@ def register():
         uname = request.form.get('uname')
         pword = request.form.get('pword')
         twofa = request.form.get('2fa')
-        adduser = User(username=uname, password=pword, twofactr=twofa)
-        db.session.add(adduser)
-        db.session.commit()
         if uname  and pword :
         	checkuser = User.query.filter_by(username=uname).first()
         	#if uname in unamelist:
@@ -88,9 +85,12 @@ def register():
         	else:
         	    unamelist.append(uname)
         	    pwordlist.append(pword)
+        	    adduser = User(username=uname, password=pword, twofactr=twofa)
+        	    db.session.add(adduser)
+        	    db.session.commit()
         	    if twofa:
-        	        if twofa.isdigit():
-        	            twofalist.append(twofa)
+        	        #if twofa.isdigit():
+        	        twofalist.append(twofa)
         	    else:
         	        twofalist.append('no')
         	    message = "Success. Your username is "+uname
