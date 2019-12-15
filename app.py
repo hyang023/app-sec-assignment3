@@ -126,7 +126,7 @@ def login():
                     global loginaddon
                     logincount = logincount + 1
                     loginnum = logincount+loginaddon
-                    addlogin = Login(login_id=loginnum,logitime=current_time,logotime='no',loginusr=uname)
+                    addlogin = Login(login_id=loginnum,logitime=current_time,logotime='N/A',loginusr=uname)
                     db.session.add(addlogin)
                     db.session.commit()
                     global loggedin
@@ -168,19 +168,25 @@ def spell_check():
     if request.method == 'POST':
         inputtext = request.form.get('inputtext')
         if inputtext:
-            queryuserlist.append(loginuserlist[-1])
-            querylist.append(inputtext)
-            message = "Supplied Text: "+inputtext
-            #stdout = check_output(['ls','-l']).decode('utf-8')
-            f= open("test1.txt","w+")
-            f.write(inputtext)
-            f.close() 
-            stdout = check_output(['chmod','755','a.out'])
-            #stdout = check_output(['ls','-l']).decode('utf-8')
-            stdout = check_output(['./a.out','test1.txt','wordlist.txt']).decode('utf-8')
-            os.remove("test1.txt")
-            message2 = "Misspelled words: "+stdout
-            queryresultlist.append(stdout)
+            global loggedin
+            if not loggedin:
+                message = "Please login and try again"
+            else:
+                message = "Supplied Text: "+inputtext
+                f= open("test1.txt","w+")
+                f.write(inputtext)
+                f.close() 
+                stdout = check_output(['chmod','755','a.out'])
+                stdout = check_output(['./a.out','test1.txt','wordlist.txt']).decode('utf-8')
+                os.remove("test1.txt")
+                message2 = "Misspelled words: "+stdout
+                global querycount
+                global queryaddon
+                querycount = querycount+1
+                querynum = querycount+queryaddon
+                addquery = Query(query_id=querynum,querytext=inputtext,misspell=stdout,queryusr=loggedin)
+                db.session.add(addquery)
+                db.session.commit()
     return render_template('spellcheck.html', message=message, message2=message2, value=value)
 
 @app.route('/history', methods=['post', 'get'])
@@ -188,18 +194,16 @@ def history():
     value=random.randrange(1,100)
     message1 = ''
     message2 = []
-    user = ''
-    if len(logintimelist)>len(logouttimelist):
-        user = loginuserlist[-1]    
+    global loggedin  
     if request.method == 'POST':
         inputtext = request.form.get('inputtext')
-        if len(logintimelist)>len(logouttimelist) and loginuserlist[-1] == 'admin' and inputtext:
+        if loggedin == 'admin' and inputtext:
             message2 = [str(index) for index, value in enumerate(queryuserlist) if value == inputtext]
             message1 = inputtext+" has made "+str(len(message2))+" queries"
-    elif len(logintimelist)>len(logouttimelist):
-        message2 = [str(index) for index, value in enumerate(queryuserlist) if value == loginuserlist[-1]]
+    elif loggedin:
+        message2 = [str(index) for index, value in enumerate(queryuserlist) if value == loggedin]
         message1 = "you have made "+str(len(message2))+" queries"
-    return render_template('history.html', message1=message1, message2=message2, user=user, value=value)
+    return render_template('history.html', message1=message1, message2=message2, user=loggedin, value=value)
 
 @app.route('/history/query<int:query_id>')
 def query_history(query_id):
