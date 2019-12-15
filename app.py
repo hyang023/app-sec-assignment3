@@ -18,6 +18,11 @@ querylist = []
 queryuserlist = []
 queryresultlist = []
 
+logincount = 0
+loginaddon = random.randrange(1,100)
+querycount = 0
+queryaddon = random.randrange(1,100)
+
 #def create_app(config=None):
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/app.db'
@@ -112,6 +117,9 @@ def login():
                     now = datetime.now()
                     current_time = now.strftime("%Y-%m-%d %H:%M:%S")
                     logintimelist.append(current_time)
+                    logincount = logincount+1
+                    loginnum = logincount+loginaddon
+                    addlogin = Login(login_id=logincount,logitime=current_time,logotime='no',loginusr=uname)
                     message = "Success "+loginuserlist[-1]+" is logged in at "+current_time
                 else:
                     message = "Two-factor authentication failure"
