@@ -74,7 +74,10 @@ def hello_world():
     countlogins = len(alllogins)
     output = "num logins is "+str(countlogins)
     for login in alllogins:
-        output = output+" query: "+login.login_id
+        output = output+" query: "+str(login.login_id)
+    global logincount
+    global loginaddon
+    output = " and current loginid is "+str(logincount+loginaddon)
     return output
 
 @app.route('/register', methods=['post', 'get'])
@@ -120,6 +123,7 @@ def login():
                     current_time = now.strftime("%Y-%m-%d %H:%M:%S")
                     logintimelist.append(current_time)
                     global logincount
+                    global loginaddon
                     logincount = logincount + 1
                     loginnum = logincount+loginaddon
                     addlogin = Login(login_id=logincount,logitime=current_time,logotime='no',loginusr=uname)
