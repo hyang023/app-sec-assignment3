@@ -113,7 +113,7 @@ def login():
                     #if index == index2:
             checkuser = User.query.filter_by(username=uname).first()
             if checkuser is not None and str(checkuser.password) == pword:
-                if str(checkuser.twofactor) == 'no' or str(checkuser.twofactor) == twofa:
+                if str(checkuser.twofactr) == 'no' or str(checkuser.twofactr) == twofa:
                         #message = "Success"
                         loginuserlist.append(uname);
                         now = datetime.now()
