@@ -70,10 +70,8 @@ db.session.commit()
 
 @app.route('/')
 def hello_world():
-    missing = User.query.filter_by(username='missing').first()
-    testadmin = User.query.filter_by(username='admin').first()
-    testpass = str(testadmin.password) == 'Administrator@1'
-    output = "missing is "+str(missing is None)+" and admin pass is "+str(testpass)
+    countlogins = Login.count()
+    output = "num logins is "+str(countlogins)
     return output
 
 @app.route('/register', methods=['post', 'get'])
