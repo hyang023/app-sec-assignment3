@@ -81,7 +81,9 @@ def register():
         db.session.add(adduser)
         db.session.commit()
         if uname  and pword :
-        	if uname in unamelist:
+        	checkuser = User.query.filter_by(username='missing').first()
+        	#if uname in unamelist:
+        	if checkuser is not None:
         	    message="Failure: username already exists"
         	else:
         	    unamelist.append(uname)
