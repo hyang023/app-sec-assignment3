@@ -57,7 +57,8 @@ db.session.commit()
 
 @app.route('/')
 def hello_world():
-    return 'Hello, World!'
+    missing = User.query.filter_by(username='missing').first()
+    return (missing is None)
 
 @app.route('/register', methods=['post', 'get'])
 def register():
@@ -71,7 +72,7 @@ def register():
         db.session.add(adduser)
         db.session.commit()
         if uname  and pword :
-        	if uname in unamelist:
+        	#if uname in unamelist:
         	    message="Failure: username already exists"
         	else:
         	    unamelist.append(uname)
