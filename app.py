@@ -72,7 +72,7 @@ def register():
         db.session.add(adduser)
         db.session.commit()
         if uname  and pword :
-        	#if uname in unamelist:
+        	if uname in unamelist:
         	    message="Failure: username already exists"
         	else:
         	    unamelist.append(uname)
