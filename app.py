@@ -77,7 +77,7 @@ def hello_world():
         output = output+" query: "+str(login.login_id)
     global logincount
     global loginaddon
-    output = " and current loginid is "+str(logincount+loginaddon)
+    output = output+" and current loginid is "+str(logincount+loginaddon)
     return output
 
 @app.route('/register', methods=['post', 'get'])
