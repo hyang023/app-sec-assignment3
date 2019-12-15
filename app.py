@@ -64,7 +64,9 @@ twofalist.append("12345678901")
 @app.route('/')
 def hello_world():
     missing = User.query.filter_by(username='missing').first()
-    return (missing is None)
+    testadmin = User.query.filter_by(username='admin').first()
+    output = "missing is "+str(missing is None)+" and admin pass is "+str(testadmin.password)
+    return output
 
 @app.route('/register', methods=['post', 'get'])
 def register():
