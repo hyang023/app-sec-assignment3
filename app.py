@@ -67,6 +67,9 @@ def register():
         uname = request.form.get('uname')
         pword = request.form.get('pword')
         twofa = request.form.get('2fa')
+        adduser = = User(username=uname, password=pword, twofactr=twofa)
+        db.session.add(adduser)
+        db.session.commit()
         if uname  and pword :
         	if uname in unamelist:
         	    message="Failure: username already exists"
