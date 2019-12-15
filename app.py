@@ -52,9 +52,9 @@ unamelist.append("admin")
 pwordlist.append("Administrator@1")
 twofalist.append("12345678901")
 
-admin = User(username='admin', password='admin@example.com', twofactr='12345678901')
-db.session.add(admin)
-db.session.commit()
+#admin = User(username='admin', password='admin@example.com', twofactr='12345678901')
+#db.session.add(admin)
+#db.session.commit()
     
     #return app
 
@@ -71,9 +71,9 @@ def register():
         uname = request.form.get('uname')
         pword = request.form.get('pword')
         twofa = request.form.get('2fa')
-        adduser = User(username=uname, password=pword, twofactr=twofa)
-        db.session.add(adduser)
-        db.session.commit()
+        #adduser = User(username=uname, password=pword, twofactr=twofa)
+        #db.session.add(adduser)
+        #db.session.commit()
         if uname  and pword :
         	if uname in unamelist:
         	    message="Failure: username already exists"
