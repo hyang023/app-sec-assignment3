@@ -140,7 +140,7 @@ def logout():
     now = datetime.now()
     current_time = now.strftime("%Y-%m-%d %H:%M:%S")
     global loggedin
-    checkuser = Login.query.filter_by(desc(Login.login_id)).limit(1)
+    checkuser = Login.query.filter_by(Login.login_id.desc()).limit(1)
     checkuser.logotime = current_time
     return 'logged out'
 
