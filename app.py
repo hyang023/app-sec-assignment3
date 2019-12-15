@@ -117,6 +117,7 @@ def login():
                     now = datetime.now()
                     current_time = now.strftime("%Y-%m-%d %H:%M:%S")
                     logintimelist.append(current_time)
+                    global logincount
                     logincount = logincount + 1
                     loginnum = logincount+loginaddon
                     addlogin = Login(login_id=logincount,logitime=current_time,logotime='no',loginusr=uname)
