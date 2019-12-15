@@ -79,21 +79,21 @@ def register():
         pword = request.form.get('pword')
         twofa = request.form.get('2fa')
         if uname  and pword :
-        	checkuser = User.query.filter_by(username=uname).first()
-        	#if uname in unamelist:
-        	if checkuser is not None:
-        	    message="Failure: username already exists"
-        	else:
-        	    unamelist.append(uname)
-        	    pwordlist.append(pword)
-        	    if twofa:
-        	        if not twofa.isdigit():
-        	            twofa = 'no'
-        	    twofalist.append('no')
-        	    adduser = User(username=uname, password=pword, twofactr=twofa)
-        	    db.session.add(adduser)
-        	    db.session.commit()
-        	    message = "Success. Your username is "+uname
+            checkuser = User.query.filter_by(username=uname).first()
+            #if uname in unamelist:
+            if checkuser is not None:
+                message="Failure: username already exists"
+            else:
+                unamelist.append(uname)
+                pwordlist.append(pword)
+                if twofa:
+                    if not twofa.isdigit():
+                        twofa = 'no'
+                twofalist.append('no')
+                adduser = User(username=uname, password=pword, twofactr=twofa)
+                db.session.add(adduser)
+                db.session.commit()
+                message = "Success. Your username is "+uname
     return render_template('registration.html', message=message, value=value)
 
 @app.route('/login',  methods=['post', 'get'])
@@ -105,23 +105,24 @@ def login():
         pword = request.form.get('pword')
         twofa = request.form.get('2fa')
         if uname  and pword :
-        	message = "Invalid login for "+uname
-        	if uname in unamelist:
-        	    index = unamelist.index(uname)
-        	    if pword in pwordlist:
-        		    index2 = pwordlist.index(pword)
-        		    if index == index2:
-        	#checkuser = User.query.filter_by(username=uname).first()
-            #if checkuser is not None and :
-        		        message = "Success"
-        		        loginuserlist.append(uname);
-        		        now = datetime.now()
-        		        current_time = now.strftime("%Y-%m-%d %H:%M:%S")
-        		        logintimelist.append(current_time)
-        	    if pwordlist[index] == pword:
-        		    message = "Success "+loginuserlist[-1]+" is logged in at "+current_time
-        	    if twofalist[index] != twofa and twofalist[index] != 'no':
-        		    message = "Two-factor authentication failure"
+            message = "Invalid login for "+uname
+            #if uname in unamelist:
+                #index = unamelist.index(uname)
+                #if pword in pwordlist:
+                    #index2 = pwordlist.index(pword)
+                    #if index == index2:
+            checkuser = User.query.filter_by(username=uname).first()
+            if checkuser is not None and str(checkuser.password) == pword:
+                if str(checkuser.twofactor) == 'no' or str(checkuser.twofactor) == twofa:
+                        #message = "Success"
+                        loginuserlist.append(uname);
+                        now = datetime.now()
+                        current_time = now.strftime("%Y-%m-%d %H:%M:%S")
+                        logintimelist.append(current_time)
+                if pwordlist[index] == pword:
+                    message = "Success "+loginuserlist[-1]+" is logged in at "+current_time
+                if twofalist[index] != twofa and twofalist[index] != 'no':
+                    message = "Two-factor authentication failure"
     return render_template('login.html', message=message, value=value)
 
 @app.route('/login_success', methods=['POST'])
