@@ -101,10 +101,8 @@ def login():
             checkuser = User.query.filter_by(username=uname).first()
             if checkuser is not None and str(checkuser.password) == pword:
                 if str(checkuser.twofactr) == 'no' or str(checkuser.twofactr) == twofa:
-                    loginuserlist.append(uname);
                     now = datetime.now()
                     current_time = now.strftime("%Y-%m-%d %H:%M:%S")
-                    logintimelist.append(current_time)
                     global logincount
                     global loginaddon
                     logincount = logincount + 1
