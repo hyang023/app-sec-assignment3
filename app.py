@@ -179,7 +179,7 @@ def history():
     if request.method == 'POST':
         inputtext = request.form.get('inputtext')
         if loggedin == 'admin' and inputtext:
-            checkquery = Login.query.filter_by(queryusr=str(inputtext)).all()
+            checkquery = Query.query.filter_by(queryusr=str(inputtext)).all()
             for eachquery in checkquery:
                 message2.append(str(eachquery.query_id))
             message1 = "you have made "+str(len(checkquery))+" queries"
