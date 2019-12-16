@@ -8,15 +8,6 @@ from flask_sqlalchemy import SQLAlchemy
 
 uname = ''
 pword = ''
-unamelist = [] 
-pwordlist = [] 
-twofalist = []
-loginuserlist = []
-logintimelist = []
-logouttimelist = []
-querylist = []
-queryuserlist = []
-queryresultlist = []
 
 logincount = 0
 loginaddon = random.randrange(1,100)
