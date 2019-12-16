@@ -231,7 +231,7 @@ def login_history():
         if loggedin == 'admin' and inputtext:
             checklogin = Login.query.filter_by(loginusr=str(inputtext)).all()
             for eachlogin in checklogin:
-                message1.append(checklogin.login_id)
-                message2.append(checklogin.logitime)
-                message3.append(checklogin.logotime)
+                message1.append(eachlogin.login_id)
+                message2.append(eachlogin.logitime)
+                message3.append(eachlogin.logotime)
     return render_template('loginhistory.html', message1=message1, message2=message2, message3=message3, value= value, user=loggedin)
