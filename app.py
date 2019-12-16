@@ -48,10 +48,6 @@ class Login(db.Model):
 
 db.drop_all() 
 db.create_all()    
-    
-unamelist.append("admin")
-pwordlist.append("Administrator@1")
-twofalist.append("12345678901")
 
 admin = User(username='admin', password='Administrator@1', twofactr='12345678901')
 db.session.add(admin)
