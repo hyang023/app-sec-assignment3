@@ -10,6 +10,8 @@
        Enter User <input type="text" placeholder="Input Text" name="inputtext"  id=inputtext required>
        <input type="submit" name="submit">
      </form>
+  {% else %}
+  <p> unauthorized </p>
   {% endif %}
   
   {% if message1 %}
@@ -17,8 +19,6 @@
      {% for query in message2 %}
   <p id="query{{ query }}"><a href={{ url_for('query_history', query_id=query) }}> query#{{ query }} </a></p>
      {% endfor %}
-  {% else %}
-  <p> unauthorized </p>
   {% endif %}
 </body>
 </html>
