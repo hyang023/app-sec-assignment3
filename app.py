@@ -151,8 +151,8 @@ def logout():
     if loggedin:
         global logincount
         loginnum = logincount+loginaddon
-        checkuser = Login.query.filter_by(login_id=loginnum).first()
-        checkuser.logotime = current_time
+        checklogin = Login.query.filter_by(login_id=loginnum).first()
+        checklogin.logotime = current_time
         db.session.commit()
         message = 'logged out'
         loggedin = ''
@@ -211,35 +211,31 @@ def query_history(query_id):
     message2 = ''
     message3 = ''
     message4 = ''
-    if query_id < len(queryuserlist):
-        if loginuserlist[-1] == 'admin' or queryuserlist[query_id] == loginuserlist[-1]:
-            message1 = str(query_id)
-            message2 = queryuserlist[query_id]
-            message3 = querylist[query_id]
-            message4 = queryresultlist[query_id]
+    global loggedin
+    checkquery = Query.query.filter_by(query_id=query_id).first()
+    if checkquery.queryuser == loggedin or loggedin == 'admin':
+        message1 = str(query_id)
+        message2 = str(checkquery.queryusr)
+        message3 = str(checkquery.querytxt)
+        message4 = str(checkquery.misspell)
     return render_template('queryhistory.html', message1=message1, message2=message2, message3=message3, message4=message4)
 
 @app.route('/login_history',  methods=['post', 'get'])
 def login_history():
     value=random.randrange(1,100)
-    user = ''
-    message = "Admins can view login history page here"
+    #loginnum
     message1 = []
+    #logintime
     message2 = []
+    #logouttime
     message3 = []
-    inputuser = ''
-    if len(logintimelist)>len(logouttimelist):
-        user = loginuserlist[-1]   
+    global loggedin
     if request.method == 'POST':
         inputtext = request.form.get('inputtext')
-        if len(logintimelist)>len(logouttimelist) and loginuserlist[-1] == 'admin' and inputtext:
-            inputuser = inputtext
-            temp = [index for index, value in enumerate(queryuserlist) if value == inputtext]
-            message1 = [str(index) for index, value in enumerate(queryuserlist) if value == inputtext]
-            for x in temp:
-                message2.append(logintimelist[x])
-                if len(logintimelist) == len(logouttimelist) or x < (len(logouttimelist)):
-                    message3.append(logouttimelist[x])
-                else:
-                    message3.append("N/A")
-    return render_template('loginhistory.html', message=message, message1=message1, message2=message2, message3=message3, value= value, user=user)
+        if loggedin == 'admin' and inputtext:
+            checklogin = Login.query.filter_by(loginusr=str(inputtext)).all()
+            for eachlogin in checklogin:
+                message1.append(checklogin.login_id)
+                message2.append(checklogin.logitime)
+                message3.append(checklogin.logotime)
+    return render_template('loginhistory.html', message1=message1, message2=message2, message3=message3, value= value, user=loggedin)
