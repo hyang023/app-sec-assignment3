@@ -90,16 +90,12 @@ def register():
         twofa = request.form.get('2fa')
         if uname  and pword :
             checkuser = User.query.filter_by(username=uname).first()
-            #if uname in unamelist:
             if checkuser is not None:
                 message="Failure: username already exists"
             else:
-                unamelist.append(uname)
-                pwordlist.append(pword)
                 if twofa:
                     if not twofa.isdigit():
                         twofa = 'no'
-                twofalist.append('no')
                 adduser = User(username=uname, password=pword, twofactr=twofa)
                 db.session.add(adduser)
                 db.session.commit()
