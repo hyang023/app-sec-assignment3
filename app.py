@@ -165,7 +165,7 @@ def spell_check():
                 global queryaddon
                 querycount = querycount+1
                 querynum = querycount+queryaddon
-                addquery = Query(query_id=querynum,querytext=inputtext,misspell=stdout,queryusr=loggedin)
+                addquery = Query(query_id=querynum,querytxt=inputtext,misspell=stdout,queryusr=loggedin)
                 db.session.add(addquery)
                 db.session.commit()
     return render_template('spellcheck.html', message=message, message2=message2, value=value)
