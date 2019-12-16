@@ -184,7 +184,7 @@ def history():
                 message2.append(str(eachquery.query_id))
             message1 = "you have made "+str(len(checkquery))+" queries"
         elif loggedin:
-            checkquery = Login.query.filter_by(queryusr=loggedin).all()
+            checkquery = Query.query.filter_by(queryusr=loggedin).all()
             for eachquery in checkquery:
                 message2.append(str(eachquery.query_id))
             message1 = "you have made "+str(len(checkquery))+" queries"
