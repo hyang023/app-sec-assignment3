@@ -219,11 +219,8 @@ def query_history(query_id):
 @app.route('/login_history',  methods=['post', 'get'])
 def login_history():
     value=random.randrange(1,100)
-    #loginnum
     message1 = []
-    #logintime
     message2 = []
-    #logouttime
     message3 = []
     global loggedin
     if request.method == 'POST':
@@ -234,4 +231,5 @@ def login_history():
                 message1.append(str(eachlogin.login_id))
                 message2.append(str(eachlogin.logitime))
                 message3.append(str(eachlogin.logotime))
-    return render_template('loginhistory.html', message1=message1, message2=message2, message3=message3, value= value, user=loggedin)
+    zipped = zip(message1, message2, message3)
+    return render_template('loginhistory.html', message1=zipped, value= value, user=loggedin)
