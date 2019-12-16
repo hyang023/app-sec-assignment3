@@ -198,7 +198,7 @@ def query_history(query_id):
     message4 = ''
     global loggedin
     checkquery = Query.query.filter_by(query_id=query_id).first()
-    if checkquery.queryuser == loggedin or loggedin == 'admin':
+    if checkquery.queryusr == loggedin or loggedin == 'admin':
         message1 = str(query_id)
         message2 = str(checkquery.queryusr)
         message3 = str(checkquery.querytxt)
