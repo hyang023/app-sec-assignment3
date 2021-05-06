@@ -1,5 +1,5 @@
 pytest>=3.0.7
 tox>=2.7.0
 Flask==1
-flask-cors==3.0.2
+flask-cors==3.0.9
 Flask-SQLAlchemy==0.16
